@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  color: #fff;
+  background:
+    radial-gradient(1100px 650px at 75% -10%, #303030 0%, transparent 60%),
+    radial-gradient(900px 600px at -10% 105%, #1d1d1d 0%, transparent 55%),
+    #060606;
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+* { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.18) transparent; }
+::selection { background: #fff; color: #000; }
+
+@layer components {
+  .panel {
+    @apply rounded-2xl border border-white/10 bg-white/[0.035] shadow-[0_8px_40px_-12px_rgba(0,0,0,.8)] backdrop-blur-xl;
+  }
+  .label { @apply text-[11px] font-medium uppercase tracking-[0.14em] text-neutral-500; }
+  .gradient-text { @apply bg-gradient-to-b from-white via-neutral-200 to-neutral-600 bg-clip-text text-transparent; }
+
+  .btn {
+    @apply inline-flex h-10 select-none items-center justify-center gap-2 whitespace-nowrap rounded-xl px-4 text-sm font-medium outline-none transition
+      focus-visible:ring-2 focus-visible:ring-white/60 active:scale-[.98] disabled:pointer-events-none disabled:opacity-40;
+  }
+  .btn-primary { @apply btn bg-gradient-to-b from-white to-neutral-300 text-black shadow-[0_6px_24px_-6px_rgba(255,255,255,.45)] hover:to-white; }
+  .btn-ghost { @apply btn border border-white/15 bg-white/5 text-white hover:border-white/30 hover:bg-white/10; }
+  .btn-icon { @apply inline-flex h-8 w-8 items-center justify-center rounded-lg text-neutral-400 outline-none transition hover:bg-white/10 hover:text-white focus-visible:ring-2 focus-visible:ring-white/60 disabled:opacity-30; }
+
+  .field {
+    @apply w-full rounded-xl border border-white/10 bg-black/40 px-3 py-2.5 text-sm text-white outline-none transition
+      placeholder:text-neutral-600 focus:border-white/40 focus:bg-black/60;
+  }
+  .chip {
+    @apply inline-flex h-8 items-center rounded-full border border-white/10 bg-white/[0.04] px-3 text-xs font-medium text-neutral-300 transition hover:border-white/30 hover:text-white;
+  }
+  .chip-active { @apply border-white bg-white text-black hover:text-black; }
+
+  .spinner {
+    @apply inline-block h-3.5 w-3.5 rounded-full border-2 border-white/20 border-t-white;
+    animation: spin 0.8s linear infinite;
+  }
+  .stage-bg {
+    background:
+      radial-gradient(60% 55% at 50% 42%, rgba(255,255,255,.14) 0%, rgba(255,255,255,0) 70%),
+      linear-gradient(180deg, #181818 0%, #0b0b0b 100%);
+  }
+  .grid-bg {
+    background-image:
+      linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(70% 70% at 50% 45%, #000 0%, transparent 100%);
+    -webkit-mask-image: radial-gradient(70% 70% at 50% 45%, #000 0%, transparent 100%);
+  }
+}
+
+/* Range slider */
+input[type='range'] {
+  -webkit-appearance: none; appearance: none;
+  width: 100%; height: 4px; border-radius: 999px; outline: none; cursor: pointer;
+  background: linear-gradient(to right, #fff var(--p, 50%), rgba(255,255,255,.14) var(--p, 50%));
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%;
+  background: #fff; border: 3px solid #0a0a0a; box-shadow: 0 0 0 1px rgba(255,255,255,.6);
+}
+input[type='range']::-moz-range-thumb {
+  width: 12px; height: 12px; border-radius: 50%; background: #fff; border: 3px solid #0a0a0a;
+}
+input[type='range']:focus-visible { box-shadow: 0 0 0 3px rgba(255,255,255,.25); }
